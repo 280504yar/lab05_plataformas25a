@@ -31,5 +31,6 @@ int main() {
 
         printf("Al imprimir todo hacia atras... \n");
         Imprimir_rev_d(head);
+        Eliminar_lista_d(head);
         return EXIT_SUCCESS;
 }

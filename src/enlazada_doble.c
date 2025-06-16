@@ -16,7 +16,7 @@ Nodo_d *Anadir_inic_d(Nodo_d *head, int n) { //funcion que devuelve un puntero d
                 printf("No hay espacio \n");
         }
 
-        return head;
+        return newnode;
 }
 
 Nodo_d *Anadir_fin_d(Nodo_d *head, int n) { //funcion que devuelve un puntero de tipo nodo, recibe la direccion de lista a la que le quiere agregar los nodos y los datos que se le quieren agregar
@@ -72,6 +72,7 @@ Nodo_d *Anadir_especif_d(Nodo_d *head, int pos, int data) { //funcion que devuel
                         if (tmp->next == NULL) {
                                 free(newnode);
                                 printf("posicion invalida \n");
+                                return NULL;
                         }
                         newnode->next = tmp->next;
 			if(newnode->next != NULL) {
