@@ -3,8 +3,7 @@ CFLAGS = -Wall -I$(INC)
 OBJ = $(SRC:.c=.o)
 TARGET = main
 INC = include
-SRC = main.c  # agregar aca el nombre de sus .c, formato: "src/nombre.c"
-
+SRC = main.c src/enlazada.c src/enlazada_doble.c # agregar aca el nombre de sus .c, formato: "src/nombre.c"
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
