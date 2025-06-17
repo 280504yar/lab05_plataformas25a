@@ -1,21 +1,14 @@
 CC = gcc
-CFLAGS = -Wall -I$(INC)
-OBJ = $(SRC:.c=.o)
-TARGET = main
-INC = include
-<<<<<<< HEAD
-SRC = main.c src/enlazada.c src/enlazada_doble.c main.c src/enlazada.c src/enlazada_doble.c main_stack.c src/stack.c # agregar aca el nombre de sus .c, formato: "src/nombre.c"
-=======
-SRC = main.c src/enlazada.c src/enlazada_doble.c main_stack.c src/stack.c# agregar aca el nombre de sus .c, formato: "src/nombre.c"
->>>>>>> feature/stack
-all: $(TARGET)
+CFLAGS = -Wall -g
 
-$(TARGET): $(OBJ)
-	$(CC) $(OBJ) -o $(TARGET)
+all: main
 
-src/%.o: src/%.c main.c $(INC)/*.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
+main: main.o arraydinamico.o
+	$(CC) $(CFLAGS) -o main main.o arraydinamico.o
+main.o: main.c arraydinamico.h
+	$(CC) $(CFLAGS) -c main.c
+arraydinamico.o: arraydinamico.c arraydinamico.h
+	$(CC) $(CFLAGS) -c arraydinamico.c
 clean:
-	rm main src/*.o main.o
+	rm -f *.o main
 
