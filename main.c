@@ -1,36 +1,66 @@
-#include "enlazada_doble.h"
+#include "arraydinamico.h"
+#include <stdio.h>
 
 int main() {
-	Nodo_d *head = NULL;
+//Crear el arreglo
+	int tamano_inicial;
+	printf("Ingrese el tamaño inicial del arreglo: ");
+	scanf("%d", &tamano_inicial);
+	ArrayDinamico *arr = crear(tamano_inicial);
+	if (!arr) {
+		printf("Error al crear el arreglo\n");
+		return 1;
+	}
+	printf("El arreglo dinámico es: ");
+	imprimir(arr);
+	printf("\n");
 
-        printf("anadir al inicio \n");
-        head = Anadir_inic_d(head, 1);
-        printf("anadir al final \n");
-        head = Anadir_fin_d(head, 2);
-        head = Anadir_fin_d(head, 3);
-        head = Anadir_fin_d(head, 4);
-        head = Anadir_fin_d(head, 5);
-        head = Anadir_fin_d(head, 6);
-        printf("imprimir hacia adelante \n");
-        Imprimir_d(head);
+//Añadir elemento del arreglo
+	int elemento_a = 0;
+	char opcion_a = 's';
 
-        printf("Al anadir especificamente en una posicion... \n");
-        head = Anadir_especif_d(head, 4, 7);
-        printf("imprimir hacia adelante \n");
-        Imprimir_d(head);
+	while (opcion_a == 's' || opcion_a == 'S') {
+		printf("Añadir elemento al arreglo, escriba un número: ");
+		scanf("%d", &elemento_a);
+		anadir(arr, elemento_a);
+		printf("El arreglo dinámico es: ");
+		imprimir(arr);
+		printf("¿Desea añadir otro elemento al arreglo? [S/N]: ");
+		scanf(" %c", &opcion_a);
+		printf("\n");
+	}
 
-        printf("Al borrar especificamente basado en la data... \n");
-        head = Eliminar_espec_d(head, 3);
-        printf("imprimir hacia adelante \n");
-        Imprimir_d(head);
+//Eliminar elemento del arreglo
+	int indice_e;
+	char opcion_e = 's';
+	while (opcion_e == 's' || opcion_e == 'S') {
+		printf("Eliminar elemento al arreglo, escriba el índice: ");
+		scanf("%d", &indice_e);
+		eliminar(arr, indice_e);
+		printf("El arreglo dinámico es: ");
+		imprimir(arr);
+		printf("¿Desea eliminar otro elemento al arreglo? [S/N]: ");
+		scanf(" %c", &opcion_e);
+		printf("\n");
+	}
 
-        printf("Al buscar... \n");
-        Nodo_d *encontrado = Buscar_d(head, 9);
-        printf("imprimir hacia adelante \n");
-        Imprimir_d(encontrado);
+//Obtener elemento del arreglo
+	int indice_o;
+	int elemento_o = 0;
+	char opcion_o = 's';
+	while (opcion_o == 's' || opcion_o == 'S') {
+		printf("Obtener elemento del arreglo, escriba el índice: ");
+        	scanf("%d", &indice_o);
+		if (obtener(arr, indice_o, &elemento_o) == 0)
+			printf("Elemento en índice %d: %d\n", indice_o, elemento_o);
+		printf("¿Desea obtener otro elemento al arreglo? [S/N]: ");
+                scanf(" %c", &opcion_o);
+                printf("\n");
+        }
 
-        printf("Al imprimir todo hacia atras... \n");
-        Imprimir_rev_d(head);
-        Eliminar_lista_d(head);
-        return EXIT_SUCCESS;
+//Liberar arreglo dinámico
+	printf("\n Final de funciones, liberando memoria\n");
+	liberar(arr);
+	return 0;
 }
+
